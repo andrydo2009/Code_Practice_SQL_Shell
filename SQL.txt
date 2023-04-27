@@ -1,0 +1,91 @@
+### Задание 1
+
+1. Создайте базу данных “skypro”.
+2. Переключитесь сразу на созданную базу данных (\c skypro).
+
+
+postgres=# CREATE DATABASE skypro;
+CREATE DATABASE
+postgres=# \c skypro;
+Вы подключены к базе данных "skypro" как пользователь "postgres".
+
+
+
+
+### Задание 2
+
+Создайте таблицу employee с столбцами:
+
+- id(BIGSERIAL, NOT NULL, PRIMARY KEY)
+- first_name(VARCHAR(50), NOT NULL)
+- last_name(VARCHAR(50), NOT NULL)
+- gender(VARCHAR(6), NOT NULL)
+- age (INT, NOT NULL)
+
+
+
+postgres=# CREATE DATABASE skypro;
+CREATE DATABASE
+postgres=# \c skypro;
+Вы подключены к базе данных "skypro" как пользователь "postgres".
+skypro=# CREATE TABLE employee(
+skypro(# id BIGSERIAL NOT NULL PRIMARY KEY,
+skypro(# first_name VARCHAR(50) NOT NULL,
+skypro(# last_name VARCHAR(50) NOT NULL,
+skypro(# gender VARCHAR(6) NOT NULL,
+skypro(# age INT NOT NULL
+skypro(# );
+CREATE TABLE
+skypro=# \c
+Вы подключены к базе данных "skypro" как пользователь "postgres".
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age
+----+------------+---------------+--------+-----
+
+
+### Задание 3
+
+1. Добавьте в таблицу 3 записи.
+2. Получите все записи из базы.
+3. Измените одну запись полностью.
+4. Получите все записи из базы.
+5. Удалите одну запись из базы.
+6. Получите все записи из базы.
+
+skypro=# INSERT INTO employee(
+skypro(# first_name,last_name,gender,age)
+skypro-# VALUES ('Andrey','Ovchinnikov','male',35);
+INSERT 0 1
+skypro=# INSERT INTO empolyee(
+skypro(# first_name,last_name,gender,age)
+skypro-#  VALUES ('Dmitriy','Ovchinnikov','male',62);
+INSERT 0 1
+skypro=#  INSERT INTO empolyee(
+skypro(# first_name,last_name,gender,age)
+skypro-#  VALUES ('Valentina','Ovchinnikova','female',62);
+INSERT 0 1
+skypro=# SELECT * FROM empolyee;
+ id | first_name | last_name | gender | age
+----+------------+---------------+--------+-----
+  1 | Andrey     | Ovchinnikov   | male   |  35
+  2 | Dmitriy    | Ovchinnikov   | male   |  62
+  3 | Valentina  | Ovchinnikova  | female |  62
+
+skypro=# UPDATE employee SET (first_name,last_name,gender,age) =  ('Gleb','Ovchinnikov','male',4) WHERE id = 1;
+UPDATE 1
+skypro=# SELECT * FROM empolyee;
+ id | first_name | lastname_name | gender | age
+----+------------+---------------+--------+-----
+  2 | Dmitriy    | Ovchinnikov   | male   |  62
+  3 | Valentina  | Ovchinnikova  | female |  62
+  1 | Gleb       | Ovchinnikov   | male   |   4
+
+skypro=# DELETE FROM employee WHERE id = 2;
+DELETE 1
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age
+----+------------+---------------+--------+-----
+  3 | Valentina  | Ovchinnikova  | female |  62
+  1 | Gleb       | Ovchinnikov   | male   |   4
+
+
